@@ -460,3 +460,21 @@ All timestamps UTC.
 - NOTE: the 2026-09-03 gap (flagged 09-04) is still unfilled — ids-2026-09-03.txt
   has 8 candidates, no transcripts or audio. Backfill only on Patrick's request;
   not re-run here (would need fresh upvote ranking + full drafting).
+
+## 2026-09-06 03:02 EDT — DUPLICATE GUARD again: no new batch, banner refreshed
+
+- nightly_prep resolved papers-day = 2026-09-04 AGAIN (no HF daily papers on
+  2026-09-05 or 2026-09-06 — verified via direct API calls, both returned []).
+  All 6 episodes for 2026-09-04 already exist as .md AND .mp3 (published 09-05
+  run, feed 93).
+- STOP CONDITION hit (episodes/<papers_date>-*.mp3 EXIST): did NOT draft or
+  synth. Refreshed banner: build_rss.py (93 episodes) + publish.sh pushed
+  gh-pages commit 9aa6d76 "Update site 2026-09-06_0702".
+- Verified live: feed.xml = 93 items, 2026-09-04-2609.04196.mp3 HTTP 200,
+  .nojekyll present on origin/gh-pages. Banner on origin/gh-pages reads
+  "Last updated 2026-09-06 03:02 EDT — no new episodes (93 total)"; edge CDN
+  still served the 09-05 banner minutes after push (normal Pages propagation
+  lag, not an error).
+- Consecutive third day with no fresh HF daily papers (09-03 gap + 09-05 +
+  09-06). If this pattern continues, the selector keeps re-snapshotting 09-04;
+  consider a papers-day staleness guard in nightly_prep if it recurs.
