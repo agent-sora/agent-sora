@@ -478,3 +478,11 @@ All timestamps UTC.
 - Consecutive third day with no fresh HF daily papers (09-03 gap + 09-05 +
   09-06). If this pattern continues, the selector keeps re-snapshotting 09-04;
   consider a papers-day staleness guard in nightly_prep if it recurs.
+
+## 2026-09-07 03:00–04:00 UTC — Nightly run (cron 16fe9a62f8df)
+- Fetch OK (13 papers in feed, 8 shortlisted). True-upvote re-pull via HF API: top-6 = 2609.04304 Iris (43), 2609.04250 Motion-Omni (19), 2609.05416 WorldSculpt (15), 2609.05258 InterOPT (11), 2609.05275 Dropout (6), 2609.04523 MaxKernel (5). #1 (Iris) in picks — verified.
+- Standing-rule re-scan of full feed: no new foundation-model tech reports; no qualifying reasoning-topology papers (2609.04490 GRU state-quantization = compact encoder-decoder state write-back, NOT reasoning-LM topology — rejected; RISE = self-distillation, not topology). Exactly 6 episodes.
+- Drafted 6 transcripts in-session (no subagents, per 180s-timeout lesson). Lint: 2 minor fixes — "brutally" -> "painstakingly" (2609.04523); WorldSculpt missing verdict paragraph recovered (1413w). Final: total FAILs: 0; numeric spotcheck total unexplained: 0.
+- Committed transcripts (fa6ec4c) BEFORE synth. Serial synth under flock, prefix 2026-09-07: 6/6 OK, 0 failed (8.1–10.0 min audio each, ~155s wall each).
+- build_rss + publish OK: 99 episodes, banner "Last updated 2026-09-07 03:44 EDT — added 6 new episodes (99 total)".
+- Live verify: initial 404s were GitHub Pages propagation lag; after ~90s all six mp3s HTTP 200, banner correct, feed shows 6 new items, origin/gh-pages has .nojekyll.
