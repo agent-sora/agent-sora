@@ -486,3 +486,11 @@ All timestamps UTC.
 - Committed transcripts (fa6ec4c) BEFORE synth. Serial synth under flock, prefix 2026-09-07: 6/6 OK, 0 failed (8.1–10.0 min audio each, ~155s wall each).
 - build_rss + publish OK: 99 episodes, banner "Last updated 2026-09-07 03:44 EDT — added 6 new episodes (99 total)".
 - Live verify: initial 404s were GitHub Pages propagation lag; after ~90s all six mp3s HTTP 200, banner correct, feed shows 6 new items, origin/gh-pages has .nojekyll.
+## 2026-09-08 07:35 UTC — nightly run OK, 4 episodes published
+
+- prep OK; shortlist all 4 feed papers selected (true upvotes 4/1/1/1 via HF API re-pull). No foundation-model tech reports; full-feed topology rescan: no qualifying architectural papers (all four already shortlisted; none in other lanes).
+- paper_meta produced PDFs but under episodes/feed/meta/ (not pdf/); text extracted with pymupdf directly from meta/*.pdf into text/ (main+more; no experiments pages needed — 4B/35B papers <29pp except 03241 at 28pp).
+- 4 transcripts drafted in-session (<450 words/ append): lint total FAILs 0 x4 (1319-1447 words); numeric_spotcheck total unexplained: 0 for all 4 ids.
+- Commit 8f346fa before synth. synth_batch serial under flock: done=4 failed=0 (8.4-10.1 min audio).
+- build_rss + publish OK; live verify: feed 103 items; all four 2026-09-08 mp3s HTTP 200 (CDN lag initially 404, cleared ~2 min); banner "added 4 new episodes (103 total)"; .nojekyll present on origin/gh-pages after fetch.
+- Note: `bash scripts/publish.sh` needs TMPDIR exported (mktemp under /.tmp fails otherwise).
