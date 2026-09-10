@@ -501,3 +501,13 @@ All timestamps UTC.
 - Committed uncommitted synth voice-assignment lines in transcripts (e7fd349).
 - build_rss.py (109 episodes) + publish.sh: banner "Last updated 2026-09-09 23:03 EDT — added 6 new episodes (109 total)", 109 mp3 copied, gh-pages pushed.
 - Live verify: all six 2026-09-09 mp3s HTTP 200 (initial 404s were Pages propagation, cleared ~3 min); feed 109 items; origin/gh-pages (after fetch) has .nojekyll + 6 2026-09-09 mp3s.
+
+## 2026-09-10 03:50 UTC — nightly batch (6 episodes)
+
+- Re-pulled true HF upvotes for all candidates (selected-*.json upvotes stale/zero). Top-6 picks: 2609.10522 (41, Show-Harness), 2609.10540 (29, Programmable World Model), 2609.05405 (22, WearableQA), 2609.09113 (13, SAE-Scientist-Bench), 2609.09219 (13, DCP), 2609.06703 (7, DianShi-RxnDB). #1 true-upvote (Show-Harness) confirmed in picks.
+- Standing-rule re-scan of full feed: no new foundation-model tech reports; PwM already in top-6; AgenticGen/SAEScientist are feedback-loop agents (do NOT qualify). 6 episodes total, no add-ons.
+- Drafted 6 transcripts in-session (no subagents). Gates: lint total FAILs 0 (one warn: blood in WearableQA, quoted from paper blood-biomarker context — kept), numeric_spotcheck total unexplained 0.
+- Committed transcripts (50654e7) BEFORE synth. Synth: 6/6 OK, 0 failed (each ~7.5-8.6 min audio, ~113-133s wall).
+- Publish hit mktemp TMPDIR error on first attempt ($PC unset in that shell); re-ran with TMPDIR=/home/patrick/papercast/.tmp -> gh-pages pushed, banner "added 6 new episodes (115 total)".
+- Live verify: initial 404s = GitHub Pages CDN propagation lag; confirmed pushed branch correct (index.html banner 09-10 03:49 / 115, all 6 mp3s in branch, .nojekyll present). After ~4 min all 6 mp3s HTTP 200, live feed 115 items, banner fresh.
+- Debug scripts added: debugging/{rank_upvotes,scan_rules,verify_picks,abstracts,extract_results,wordcount,meta_09219}_2026_09_10.py
