@@ -494,3 +494,10 @@ All timestamps UTC.
 - Commit 8f346fa before synth. synth_batch serial under flock: done=4 failed=0 (8.4-10.1 min audio).
 - build_rss + publish OK; live verify: feed 103 items; all four 2026-09-08 mp3s HTTP 200 (CDN lag initially 404, cleared ~2 min); banner "added 4 new episodes (103 total)"; .nojekyll present on origin/gh-pages after fetch.
 - Note: `bash scripts/publish.sh` needs TMPDIR exported (mktemp under /.tmp fails otherwise).
+
+## 2026-09-10 03:15 UTC — 2026-09-09 batch: recovered + published
+- Duplicate-guard fired (6 episodes/2026-09-09-*.mp3 already present, synthesized 03:26-03:38 UTC by the earlier 09-09 run, transcripts committed at 46d0402) — no draft/synth redone.
+- Earlier run had committed transcripts but died before build/publish: site/feed.xml had 0 entries for 2026-09-09, banner still "added 4".
+- Committed uncommitted synth voice-assignment lines in transcripts (e7fd349).
+- build_rss.py (109 episodes) + publish.sh: banner "Last updated 2026-09-09 23:03 EDT — added 6 new episodes (109 total)", 109 mp3 copied, gh-pages pushed.
+- Live verify: all six 2026-09-09 mp3s HTTP 200 (initial 404s were Pages propagation, cleared ~3 min); feed 109 items; origin/gh-pages (after fetch) has .nojekyll + 6 2026-09-09 mp3s.
