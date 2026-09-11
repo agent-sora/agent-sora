@@ -511,3 +511,14 @@ All timestamps UTC.
 - Publish hit mktemp TMPDIR error on first attempt ($PC unset in that shell); re-ran with TMPDIR=/home/patrick/papercast/.tmp -> gh-pages pushed, banner "added 6 new episodes (115 total)".
 - Live verify: initial 404s = GitHub Pages CDN propagation lag; confirmed pushed branch correct (index.html banner 09-10 03:49 / 115, all 6 mp3s in branch, .nojekyll present). After ~4 min all 6 mp3s HTTP 200, live feed 115 items, banner fresh.
 - Debug scripts added: debugging/{rank_upvotes,scan_rules,verify_picks,abstracts,extract_results,wordcount,meta_09219}_2026_09_10.py
+
+## 2026-09-11 03:52 UTC — nightly batch (6 episodes)
+
+- Re-pulled true HF upvotes for all feed candidates via debugging/rank_upvotes.py (selected-*.json upvotes stale/zero). Top-6 picks (episodes/feed/picks/ids-2026-09-11.txt): 2609.10715 (98, NCP-ArchPreview), 2609.11929 (68, SenseNova-U1.5), 2609.05903 (21, EvoSafeHarness), 2609.07064 (19, SpatialBlock), 2609.11499 (3, RCWM), 2609.06931 (3, CARDEA). #1 true-upvote (NCP-ArchPreview, 98) confirmed in picks.
+- Standing-rule re-scan of full feed via debugging/scan_standing_rules.py: NCP-ArchPreview (latent-space LM via Next Concept Prediction) and SenseNova-U1.5 (new unified visual foundation model) both qualify as foundation-model releases and are already in top-6. RCWM "we introduce" = recursive scene-program framework (NOT a foundation model); CARDEA "ssm" match = false positive (not state-space attention). No topology add-ons outside the main prefix -> single synth invocation. 6 episodes total.
+- Drafted 6 transcripts in-session (no subagents). Corrected several author bylines + lab affiliations against meta JSON + paper text after initial guesses (NCP = Intern-NCP Team @ Shanghai AI Lab + SJTU LUMIA; SenseNova = SenseNova team; EvoSafeHarness = JHU/NVIDIA/UIUC/Berkeley; CARDEA = CMC Hospital, Taichung).
+- Gates: lint total FAILs 0 (warns: 'attacker' in EvoSafeHarness, quoted from paper attack-context — kept); numeric_spotcheck total unexplained 0. Committed transcripts (8ee2a02) BEFORE synth.
+- Synth: 6/6 OK, 0 failed (each ~7.6-9.0 min audio, ~114-134s wall). Voice: bf_lily, bf_isabella, bf_emma, bm_daniel, bm_george, bf_lily.
+- Publish: first attempt hit "can't open build_rss.py" (it lives at scripts/build_rss.py, not repo root) + mktemp TMPDIR error ($TMPDIR unset in that shell); re-ran with `scripts/build_rss.py` + TMPDIR=$PWD/.tmp -> 121 episodes, gh-pages pushed, banner "Last updated 2026-09-11 03:46 EDT — added 6 new episodes (121 total)".
+- Live verify: initial 404s/115-feed = GitHub Pages CDN propagation lag; confirmed pushed origin/gh-pages branch correct (feed.xml 121 items, all 6 mp3s under episodes/, .nojekyll present, banner "added 6"). After ~4 min all 6 mp3s HTTP 200, live feed 121 items, banner fresh.
+- Debug scripts added: debugging/rank_upvotes.py, debugging/scan_standing_rules.py (generalized, reusable across dates).
