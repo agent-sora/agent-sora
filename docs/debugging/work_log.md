@@ -522,3 +522,11 @@ All timestamps UTC.
 - Publish: first attempt hit "can't open build_rss.py" (it lives at scripts/build_rss.py, not repo root) + mktemp TMPDIR error ($TMPDIR unset in that shell); re-ran with `scripts/build_rss.py` + TMPDIR=$PWD/.tmp -> 121 episodes, gh-pages pushed, banner "Last updated 2026-09-11 03:46 EDT — added 6 new episodes (121 total)".
 - Live verify: initial 404s/115-feed = GitHub Pages CDN propagation lag; confirmed pushed origin/gh-pages branch correct (feed.xml 121 items, all 6 mp3s under episodes/, .nojekyll present, banner "added 6"). After ~4 min all 6 mp3s HTTP 200, live feed 121 items, banner fresh.
 - Debug scripts added: debugging/rank_upvotes.py, debugging/scan_standing_rules.py (generalized, reusable across dates).
+
+## 2026-09-12 03:05 UTC — nightly run: DUPLICATE GUARD (no new episodes)
+
+- Saturday run. nightly_prep.sh fetched feed for 2026-09-12 but weekend snap-back resolved papers-day = **2026-09-11** (no HF daily batch published Sat/Sun).
+- Duplicate guard fired: `episodes/2026-09-11-*.mp3` already present (6 episodes, synthesized + published by the 09-11 run — 121 total, all 6 mp3s HTTP 200, banner "added 6 new episodes (121 total)" as of 09-11 03:46 EDT). No draft/synth redone per STOP CONDITIONS.
+- Refreshed banner only: `scripts/build_rss.py --episodes-dir episodes --site-dir site --config config.yaml` (121 episodes) + `bash scripts/publish.sh site` -> banner "Last updated 2026-09-12 03:04 EDT — no new episodes (121 total).", 121 mp3s copied, gh-pages pushed.
+- Live verify: feed.xml 121 items; 2026-09-11-2609.10715.mp3 HTTP 200; origin/gh-pages (after fetch) has .nojekyll. (Live index.html banner still showed the 09-11 "added 6" text at check time = normal GitHub Pages CDN propagation lag for the just-pushed new banner; the pushed branch is correct.)
+- Untracked leftover debug scripts from 09-10 run (debugging/*_2026_09_10.py) left in place, not part of this run.
